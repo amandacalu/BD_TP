@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Bases de Dados</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <link rel="stylesheet" href="style.css" />
+  <script type=text/javascript src=https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-AMS-MML_HTMLorMML></script>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="desenvolvimento-da-aplicação-python">Desenvolvimento da aplicação Python</h1>
+<h2 id="instalação-de-software">Instalação de software</h2>
+<p>Precisa de ter o Python 3 e o gestor de pacotes pip instalados. Experimente executar <code>python3 --version</code> e <code>pip3 --version</code> para saber se já estão instalados. Em caso negativo, pode por exemplo, em Ubuntu, executar:</p>
+<pre><code>sudo apt-get install python3 python3-pip</code></pre>
+<p>Tendo Python 3 e pip instalados, deve instalar a biblioteca <code>Flask</code> executando o comando:</p>
+<pre><code>pip3 install --user Flask</code></pre>
+<h2 id="configuração-de-acesso-à-bd">Configuração de acesso à BD</h2>
+<p>Edite o ficheiro <code>db.py</code> no que se refere à configuração da sua BD, modificando o parâmetro <code>DB_FILE</code>, que indica o ficheiro da base de dados. Esse ficheiro deve residir na mesma pasta que o ficheiro <code>app.py</code>.</p>
+<p>Configurado o parâmetro <code>DB_FILE</code>, teste o acesso executando:</p>
+<pre><code>python3 test_db_connection.py NOME_DE_UMA_TABELA</code></pre>
+<p>Se a configuração do acesso à BD estiver correto, deverá ser listado o conteúdo da tabela <code>NOME_DE_UMA_TABELA</code>. Por exemplo, se a BD configurada fosse a da bilheteira (Ficha 5) e quiséssemos listar a tabela <code>artistas</code>:</p>
+<pre><code>$ python3 test_db_connection.py artistas
+10 results ...
+[(&#39;NIF&#39;, 203304125), (&#39;NOME&#39;, &#39;Pedro Burmester&#39;), (&#39;D_NASCE&#39;, &#39;1968-02-23&#39;), (&#39;TIPO&#39;, &#39;pianista&#39;)]
+[(&#39;NIF&#39;, 203608991), (&#39;NOME&#39;, &#39;Jorge Palma&#39;), (&#39;D_NASCE&#39;, &#39;1960-01-11&#39;), (&#39;TIPO&#39;, &#39;pianista&#39;)]
+[(&#39;NIF&#39;, 204331998), (&#39;NOME&#39;, &#39;Jose Lobo&#39;), (&#39;D_NASCE&#39;, &#39;1955-12-03&#39;), (&#39;TIPO&#39;, &#39;maestro&#39;)]
+[(&#39;NIF&#39;, 204783229), (&#39;NOME&#39;, &#39;Sergio Godinho&#39;), (&#39;D_NASCE&#39;, &#39;1945-04-25&#39;), (&#39;TIPO&#39;, &#39;cantor&#39;)]
+[(&#39;NIF&#39;, 204949576), (&#39;NOME&#39;, &#39;Joan Baez&#39;), (&#39;D_NASCE&#39;, &#39;1944-08-15&#39;), (&#39;TIPO&#39;, &#39;cantor&#39;)]
+[(&#39;NIF&#39;, 205843223), (&#39;NOME&#39;, &#39;Miguel Santos&#39;), (&#39;D_NASCE&#39;, &#39;1980-03-26&#39;), (&#39;TIPO&#39;, &#39;musico&#39;)]
+[(&#39;NIF&#39;, 205923490), (&#39;NOME&#39;, &#39;Ana Bacalhau&#39;), (&#39;D_NASCE&#39;, &#39;1985-12-13&#39;), (&#39;TIPO&#39;, &#39;cantor&#39;)]
+[(&#39;NIF&#39;, 207659130), (&#39;NOME&#39;, &#39;Luis Costa&#39;), (&#39;D_NASCE&#39;, &#39;1980-11-03&#39;), (&#39;TIPO&#39;, &#39;maestro&#39;)]
+[(&#39;NIF&#39;, 208485301), (&#39;NOME&#39;, &#39;Nuno Medeiros&#39;), (&#39;D_NASCE&#39;, &#39;1979-04-11&#39;), (&#39;TIPO&#39;, &#39;cantor&#39;)]
+[(&#39;NIF&#39;, 209884332), (&#39;NOME&#39;, &#39;Joana Pereira&#39;), (&#39;D_NASCE&#39;, &#39;1990-09-28&#39;), (&#39;TIPO&#39;, &#39;pianista&#39;)]</code></pre>
+<h2 id="execução-do-servidor-da-aplicação">Execução do servidor da aplicação</h2>
+<p>Depois de configurar a BD como descrito acima, pode agora iniciar o servidor da aplicação executando <code>python3 server.py</code>:</p>
+<pre><code>$ python3 server.py
+2021-05-18 21:40:46 - INFO - Connected to database guest
+ * Serving Flask app &quot;app&quot; (lazy loading)
+ * Environment: production
+   WARNING: This is a development server.  Do not use it in a production deployment.
+   Use a production WSGI server instead.
+ * Debug mode: off
+2021-12-08 21:40:46 - INFO -  * Running on http://0.0.0.0:9000/ (Press CTRL+C to quit) 
+...</code></pre>
+<p>De seguida, abra no seu browser <strong>http://127.0.0.1:9000</strong> ou <strong>http://localhost:9000</strong>. Deverá ver uma página com uma mensagem <strong>Hello World!</strong>, da forma ilustrada na imagem a seguir.</p>
+<p><img src="static/app_screenshot.png" /></p>
+<h2 id="programação">Programação</h2>
+<p>A estrutura deverá ser similar à da aplicação MovieStreamApp que será abordada nas aulas teóricas. Pode consultar a propósito <a href="https://github.com/edrdo/MovieStreamApp">slides e código no GitHub</a>.</p>
+<p>Deve editar o código Python da aplicação em <code>app.py</code>. Cada “endpoint” da aplicação deve efetuar uma ou mais interrogações à base de dados e utilizar os dados obtidos para gerar HTML usando templates Jinja. Deve colocar os templates de geração de HTML (uma por “endpoint”) na pasta <code>templates</code>.</p>
+<h3 id="exemplos-na-moviestreamapp">Exemplos na MovieStreamApp</h3>
+<p>Informação de um filme - “endpoint” <code>/movies/int:id</code>:</p>
+<ul>
+<li><a href="https://github.com/edrdo/MovieStreamApp/blob/master/app.py#L46">Código no método <code>get_movie</code> em app.py</a></li>
+<li><a href="https://github.com/edrdo/MovieStreamApp/blob/master/templates/movie.html">Template em <code>templates/movie.html</code></a></li>
+</ul>
+<h3 id="sumário-das-principais-tags-usadas-no-código-da-moviestreamapp">Sumário das principais tags usadas no código da MovieStreamApp</h3>
+<h4 id="jinja">Jinja</h4>
+<ul>
+<li><code>{{ x.attr }}</code> : expande para valor de atributo <code>attr</code> para variável <code>x</code> - <a href="https://jinja.palletsprojects.com/en/3.0.x/templates/#variables">[ver documentação]</a></li>
+<li><code>{% for x in items %} ... {% endfor %}</code>: iteração <code>for</code> sobre lista de valores <code>items</code> <a href="https://jinja.palletsprojects.com/en/3.0.x/templates/#for">[ver documentação]</a></li>
+</ul>
+<h4 id="html-com-apontadores-para-tutorial-w3schools">HTML (com apontadores para tutorial W3Schools)</h4>
+<ul>
+<li><code>&lt;a href ...&gt;</code>: <a href="https://www.w3schools.com/html/html_links.asp">links</a></li>
+<li><code>&lt;table&gt; &lt;th&gt; &lt;tr&gt; &lt;td&gt;</code>: <a href="https://www.w3schools.com/html/html_tables.asp">formatação de tabelas</a></li>
+<li><code>&lt;ul&gt;</code>, <code>&lt;ol&gt;</code> <code>&lt;li&gt;</code>: <a href="https://www.w3schools.com/html/html_lists.asp">formatação de listas</a></li>
+<li><code>&lt;h1&gt;, &lt;h2&gt;, ...</code>: <a href="https://www.w3schools.com/html/html_headings.asp">cabeçalhos de nível 1, 2, …</a></li>
+<li><code>&lt;p&gt;</code>: <a href="https://www.w3schools.com/html/html_paragraphs.asp">parágrafos</a></li>
+<li><code>&lt;b&gt;, &lt;i&gt;, ...</code>: <a href="https://www.w3schools.com/html/html_formatting.asp">formatação de texto em negrito, itálico, …</a></li>
+</ul>
+<h2 id="mais-referências">Mais referências</h2>
+<ul>
+<li>HTML:
+<ul>
+<li><a href="https://www.w3schools.com/html/default.asp">W3Schools - tutorial simples</a></li>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/HTML">referência da Mozilla</a></li>
+</ul></li>
+<li>Bibliotecas:
+<ul>
+<li><a href="https://docs.python.org/3/library/sqlite3.html">sqlite3</a></li>
+<li><a href="https://flask.palletsprojects.com/en/1.1.x/">Flask</a></li>
+<li><a href="https://jinja.palletsprojects.com/en/2.10.x/templates/">Jinja templates</a></li>
+</ul></li>
+</ul>
+</body>
+</html>
