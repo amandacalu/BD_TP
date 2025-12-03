@@ -1,0 +1,21 @@
+Taylor Swift Discography
+Source: https://www.kaggle.com/datasets/madroscla/taylor-swift-released-song-discography-genius?select=ts_discography_released.csv
+
+Please notice that the columns "song_artists", "song_writers" and "song_producers" may refer to multiple persons which, in the database, should be dealt with separately. A similar situation happens with the column "song_tags".
+
+
+    album_title: the title of the album (or other release) containing each song (string)
+    album_url: the URL to the Genius page for the album (string)
+    category: the categorical classification of an album/song (string)
+        Categories in this dataset are the titles of studio albums, titles of rerecorded albums, "Non-Album Songs" for promotional singles or songs for soundtracks, and "Other Artist Songs" for songs classified under different artist's names but either feature Taylor or are written by Taylor
+    album_track_number: the track number for the song on the given album (integer)
+    song_title: the title of the song (string)
+    song_url: the URL to the Genius page for the song (string)
+    song_release_date: the original release date for the song (date)
+    song_page_views: the amount of views the Genius song page has (integer)
+    song_artists: the performing artist(s) for the song (list)
+    song_lyrics: the lyrics to the song (list)
+    song_writers: the writer(s) for the song (list)
+    song_producers: the producers(s) for the song (list)
+    song_tags: the genre tag(s) for the song (list)
+
